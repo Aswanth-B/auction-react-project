@@ -1,0 +1,79 @@
+.bidding-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.bid-card {
+  width: Fixed (297px)px;
+  height: Hug (479px)px;
+  padding: 16px 0px 0px 0px;
+  gap: 24px;
+  border-radius: 4px 0px 0px 0px;
+  opacity: 0px;
+
+  border: 1px solid #0000000D;
+  box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+.bid-container {
+  width: Fill (265px)px;
+  height: Hug (381px)px;
+  gap: 12px;
+  opacity: 0px;
+
+}
+
+.bid-card:hover {
+  transform: scale(1.05);
+}
+
+.bid-image {
+  width: 100%;
+  height: 186px;
+  padding: 10px 10px 144px 223px;
+  gap: 0px;
+  border-radius: 4px 0px 0px 0px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+
+}
+
+.bid-content {
+  width: Fill (265px)px;
+  height: Hug (183px)px;
+  gap: 12px;
+  opacity: 0px;
+
+
+  padding: 0px 4px 0px 4px;
+
+
+
+}
+
+.bid-button {
+  display: block;
+  width: calc(100% - 30px);
+  margin: 20px 15px 15px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  height: Hug (42px)px;
+  gap: 12px;
+  opacity: 0px;
+  background: linear-gradient(79.69deg, #DB2721 -0.64%, #5AD7FE 107.84%);
+
+}
+
+.bid-button:hover {
+  background-color: #0056b3;
+}
