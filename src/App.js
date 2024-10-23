@@ -19,10 +19,10 @@ const App = () => {
           
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register />} />
+          <Route path="/" element={<AuctionList />} />
           
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<AuctionList />} />
             <Route path="/myauctions" element={<AuctionList isMyAuction={true}/>} />
             <Route path="/auctions/new" element={<AuctionEdit />} />
             <Route path="/auctions/:id" element={<AuctionDetail />} />

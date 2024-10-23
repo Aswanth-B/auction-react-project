@@ -54,14 +54,21 @@ const AuctionForm = ({ auction }) => {
     };
 
     return (
-        <form className='formContainer' onSubmit={handleSubmit}>
-            <label>Title<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required /></label>
-            <label>Description<textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required /></label>
-            <label>Minimum Bid<input type="number" value={minimumBid} onChange={(e) => setMinimumBid(e.target.value)} placeholder="Minimum Bid" required /></label>
-            <label>Maximum Bid<input type="number" value={maximumBid} onChange={(e) => setMaximumBid(e.target.value)} placeholder="Maximum Bid" /></label>
-            <label>End Date<input type="datetime-local" value={endDate} onChange={(e) => setEndDate(e.target.value)} required /></label>
-            <button type="submit">{auction ? 'Edit Auction' : 'Create Auction'}</button>
-        </form>
+        <div className='allFormContainer'>
+            <div className='formContainer'>
+                <h2>{auction ? "Edit Auction" : "CreatAuction"}</h2>
+                <form className='formContainer' onSubmit={handleSubmit}>
+                    <label>Title</label><input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required />
+                    <label>Description</label><textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
+                    <label>Minimum Bid</label><input type="number" value={minimumBid} onChange={(e) => setMinimumBid(e.target.value)} placeholder="Minimum Bid" required />
+                    <label>Maximum Bid</label><input type="number" value={maximumBid} onChange={(e) => setMaximumBid(e.target.value)} placeholder="Maximum Bid" />
+                    <label>End Date</label><input type="datetime-local" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
+                    <button type="submit">{auction ? 'Update Auction' : 'Create Auction'}</button>
+                </form>
+            </div>
+            <div className='imageContainer'></div>
+        </div>
+
     );
 };
 

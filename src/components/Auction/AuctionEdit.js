@@ -31,10 +31,7 @@ const AuctionEdit = () => {
 
 
     return (
-        <div>
-            <h2>{auction ? "Edit Auction" : "CreatAuction"}</h2>
             <AuctionForm auction={auction} />
-        </div>
     );
 };
 

@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [userName, setUserName] = useState(null);
 
   useEffect(() => {
     // Check if token exists in localStorage
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }) => {
             } else {
                 // Token is valid, set user as authenticated
                 setIsAuthenticated(true);
+                setUserName(decodedToken.email.split('@')[0]);
             }
         } catch (error) {
             console.error('Invalid token:', error);
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, userName, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

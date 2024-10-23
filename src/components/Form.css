@@ -1,38 +1,74 @@
+.allFormContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
 .formContainer {
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    text-align: center;
+  flex: 1 1 300px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formContainer form p{
+  color: red;
+}
+
+.formContainer label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.formContainer input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formContainer button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.imageContainer {
+  flex: 2 1 600px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.imageContainer .regImg{
+  width: 60%;
+  height: 60%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .allFormContainer {
+    flex-direction: column;
   }
-  
-  .formContainer h2 {
-    margin-bottom: 20px;
+
+  .formContainer,
+  .imageContainer {
+    flex: 1 1 100%;
   }
-  
-  .formContainer input, .formContainer textarea {
-    width: calc(100% - 20px);
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .formContainer button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .formContainer button:hover {
-    background-color: #0056b3;
-  }
-  
+}

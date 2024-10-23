@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import api from '../../api';
 import './AuctionList.css'
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const AuctionList = ({ isMyAuction }) => {
+    const { isAuthenticated, userName } = useContext(AuthContext);
     const [auctions, setAuctions] = useState([]);
     const [timeLeft, setTimeLeft] = useState({});
     const navigate = useNavigate();
@@ -44,7 +46,7 @@ const AuctionList = ({ isMyAuction }) => {
     }
 
     const routeToAuctionDetails = (id) => {
-        navigate(`/auctions/${id}`)
+        isAuthenticated ? navigate(`/auctions/${id}`) : navigate('/login');
     }
 
     const routeToAuctionEdit = (id) => {
@@ -52,27 +54,36 @@ const AuctionList = ({ isMyAuction }) => {
     }
 
     return (
-        auctions && auctions.length > 0 &&
-        <div className="bidding-page">
-            {auctions.map(auction => (
-                <div className="bid-card" key={auction.id}>
-                    <div className='bid-container'>
-                        <img src={auction.image} alt={auction.title} className="bid-image" />
-                        <div className='bid-content'>
-                            <h3>{auction.title}</h3>
-                            <p>Current Bid: ${auction.currentBid}</p>
-                            <p>Minimum Bid: ${auction.minimumBid}</p>
-                            <p>Ends in: {formatTime(timeLeft[auction.id])}</p>
+        <div className='auctionList'>
+            {!isAuthenticated ? <div className='homeImage'>
+                <img src='/assets/images/HomeImage.png' alt='homeimage'/>
+                <div className='auctionHeader'><h1>Explore <span>Auctions</span></h1></div>
+            </div>
+            :
+            <h2>Welcome <span>{userName}!</span></h2>
+            }
+            {auctions && auctions.length > 0 &&
+                <div className="bidding-page">
+                    {auctions.map(auction => (
+                        <div className="bid-card" key={auction.id}>
+                            <div className='bid-container'>
+                                <img src={auction.image} alt={auction.title} className="bid-image" />
+                                <div className='bid-content'>
+                                    <h3>{auction.title}</h3>
+                                    <p>Current Bid: ${auction.currentBid}</p>
+                                    <p>Minimum Bid: ${auction.minimumBid}</p>
+                                    <p>Ends in: {formatTime(timeLeft[auction.id])}</p>
+                                </div>
+                            </div>
+                            {isMyAuction ?
+                                <button className="bid-button" onClick={() => routeToAuctionEdit(auction.id)}>Edit Auction</button>
+                                : <button className="bid-button" onClick={() => routeToAuctionDetails(auction.id)}>Place Bid</button>}
                         </div>
-                    </div>
-                    {isMyAuction ?
-                        <button className="bid-button" onClick={() => routeToAuctionEdit(auction.id)}>Edit Auction</button>
-                        : <button className="bid-button" onClick={() => routeToAuctionDetails(auction.id)}>Place Bid</button>}
+
+                    ))}
                 </div>
-
-            ))}
+            }
         </div>
-
     );
 };
 

@@ -15,7 +15,7 @@ const Navbar = () => {
 
         <nav className="navbar">
             <div className="navbar-left">
-                <Link className="navbar-logo" to="/"><img src="../../public/assets/images/Vector.png" alt="Logo"/></Link>
+                <Link className="navbar-logo" to="/"><img src='/assets/images/Vector.png' alt="Logo"/></Link>
                 <span className="navbar-text">Genix Auctions</span>
             </div>
             <div className="navbar-right">

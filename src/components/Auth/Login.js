@@ -7,6 +7,7 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -16,30 +17,43 @@ const Login = () => {
       navigate('/'); // Redirect to home after login
     } catch (error) {
       console.error('Error logging in', error);
+      setError("Invalid Credentials");
     }
   };
 
   return (
-    <div className="formContainer">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className='allFormContainer'>
+      <div className="formContainer">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Continue</button>
+          {error && <p>{error}</p>}
+        </form>
+      </div>
+      <div className='imageContainer'>
+        <img src="/assets/images/Illustration.png" alt='illustration' />
+      </div>
     </div>
+
+
 
   );
 };

@@ -14,7 +14,7 @@ const AuctionDetail = () => {
     const handleCloseModal = () => setShowModal(false);
 
     useEffect(() => {
-        const fetchAuctionById= async () => {
+        const fetchAuctionById = async () => {
             try {
                 const response = await api.get(`/auctions/${id}`);
                 setAuction(response.data);
@@ -27,23 +27,45 @@ const AuctionDetail = () => {
     }, [id, showModal]);
 
     return (
-        auction && 
-            
-            <div className='auctionDetail'>
-                <h1>{auction.title}</h1>
-                <p>{auction.description}</p>
-                <p>Current Bid: ${auction.auctionDetails.currentBid}</p>
-                <p>Minimum Bid: ${auction.auctionDetails.minimumBid}</p>
-                <button onClick={handleOpenModal}>Place a Bid</button>
-                <BidComponent
-                    auctionId={auction.auctionDetails.id}
-                    currentBid={auction.auctionDetails.currentBid}
-                    minimumBid={auction.auctionDetails.minimumBid}
-                    showModal={showModal}
-                    handleClose={handleCloseModal}
-                />
+        auction && auction.auctionDetails &&
+
+        <div className='auctionContainer'>
+            <div className='auctionItem'>
+                <div className="bid-card">
+                    <div className='bid-container'>
+                        <img src={auction.auctionDetails.image} alt={auction.auctionDetails.title} className="bid-image" />
+                        <div className='bid-content'>
+                            <h3>{auction.auctionDetails.title}</h3>
+                            <p>Current Bid: ${auction.auctionDetails.currentBid}</p>
+                            <p>Minimum Bid: ${auction.auctionDetails.minimumBid}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
+            <div className='auctionContent'>
+                <h6>Description</h6>
+                <p>{auction.auctionDetails.description}</p>
+            </div>
+            <div className='auctionBid'>
+                {auction.bids && auction.bids.length > 0 &&
+                    <ul>
+                        {auction.bids.map(b => b.bidderUserid === auction.auctionDetails.UserId ? 
+                            <li>Your Bid ${b.bidAmount}</li> :
+                            <li>${b.bidAmount}</li>
+                        )}
+                    </ul>
+                }
+                <button onClick={handleOpenModal}>Place a Bid</button>
+            </div>
+            <BidComponent
+                auctionId={auction.auctionDetails.id}
+                currentBid={auction.auctionDetails.currentBid}
+                minimumBid={auction.auctionDetails.minimumBid}
+                showModal={showModal}
+                handleClose={handleCloseModal}
+            />
+        </div>
+
     );
 };
 
