@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     const response = await api.post('/auth/login', { email, password });
     localStorage.setItem('token', response.data.token);
     setIsAuthenticated(true);
+    setUserName(email.split('@')[0]);
   };
 
   const logout = () => {
